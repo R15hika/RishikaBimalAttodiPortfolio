@@ -1,0 +1,104 @@
+/* ===== RESUME ===== */
+/* --u shrinks with BOTH window width and height so the section fits one screen */
+.resume {
+  --u: min(1vw, calc((100vh - 72px) / 50));
+  position: relative;
+  min-height: calc(100vh - 72px);
+  display: flex; flex-direction: column; justify-content: center;
+  max-width: none;
+  padding: calc(var(--u) * 2) calc(var(--u) * 7);
+}
+.resume-title { margin-bottom: calc(var(--u) * 2.5); }
+
+.resume-grid {
+  display: grid; grid-template-columns: 1fr 1fr 1.05fr;
+  gap: calc(var(--u) * 4); align-items: center;
+}
+.resume-grid > * { min-width: 0; }
+
+/* ---------- stacked resume pages ---------- */
+.resume-doc {
+  position: relative; display: block;
+  width: min(100%, calc(var(--u) * 26), 46vh); aspect-ratio: 8.5 / 11; justify-self: center;
+  transform: rotate(-8deg);
+  transition: transform .4s;
+}
+.resume-doc:hover { transform: rotate(-4deg) translateY(-6px); }
+.sheet {
+  position: absolute; inset: 0; border-radius: calc(var(--u) * .8);
+  background: linear-gradient(150deg, #efe3ff, #c9a8f5);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .45);
+}
+.sheet-3 { transform: translate(calc(var(--u) * -2.2), calc(var(--u) * 1.6)) rotate(-4deg); opacity: .55; }
+.sheet-2 { transform: translate(calc(var(--u) * -1.1), calc(var(--u) * .8)) rotate(-2deg); opacity: .8; }
+.sheet-1 {
+  width: 100%; height: 100%; object-fit: cover; object-position: top;
+  border: calc(var(--u) * .5) solid #efe3ff;
+  box-shadow: 0 22px 50px rgba(0, 0, 0, .55), 0 0 40px rgba(168, 85, 247, .35);
+}
+
+/* ---------- middle: download text + buttons ---------- */
+.resume-cta { display: flex; flex-direction: column; align-items: flex-start; }
+.resume-cta h3 {
+  font-family: var(--serif); font-style: italic; font-weight: 500;
+  font-size: calc(var(--u) * 3);
+}
+.resume-cta p {
+  margin: calc(var(--u) * 1.2) 0 calc(var(--u) * 2.4);
+  font-size: max(14px, calc(var(--u) * 1.5)); line-height: 1.5; color: var(--muted);
+}
+.resume-cta .btn {
+  width: min(100%, calc(var(--u) * 30)); justify-content: center;
+  font-size: max(14px, calc(var(--u) * 1.6));
+  margin-bottom: calc(var(--u) * 1.4);
+}
+
+/* ---------- right: highlights card ---------- */
+.highlights {
+  border: 1.5px solid rgba(200, 160, 255, .5); border-radius: calc(var(--u) * 2);
+  padding: calc(var(--u) * 1.8) calc(var(--u) * 2.4);
+  background: linear-gradient(160deg, rgba(139, 92, 246, .2), rgba(255, 255, 255, .04));
+  box-shadow: 0 0 30px rgba(168, 85, 247, .3), inset 0 0 20px rgba(168, 85, 247, .1);
+}
+.highlights h3 {
+  font-family: var(--serif); font-style: italic; font-weight: 400;
+  font-size: calc(var(--u) * 3);
+  padding-bottom: calc(var(--u) * .8); margin-bottom: calc(var(--u) * 1.2);
+  border-bottom: 1px solid rgba(255, 255, 255, .25);
+}
+.highlights .heart { font-size: .5em; vertical-align: .45em; font-style: normal; }
+.highlights ul { list-style: none; display: grid; gap: calc(var(--u) * 1.3); }
+.highlights li {
+  display: flex; align-items: center; gap: calc(var(--u) * 1.4);
+  font-size: max(14px, calc(var(--u) * 1.5)); line-height: 1.3;
+}
+.highlights small { font-size: 1em; color: var(--muted); }
+.highlights svg {
+  flex: none; width: calc(var(--u) * 2.6); height: calc(var(--u) * 2.6);
+  fill: none; stroke: #e9d5ff; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+}
+
+/* ---------- medium windows: pages + buttons side by side, highlights below ---------- */
+@media (max-width: 1100px) {
+  .resume { --u: min(1.4vw, calc((100vh - 72px) / 62)); padding-inline: calc(var(--u) * 4); }
+  .resume-grid { grid-template-columns: .8fr 1.2fr; row-gap: calc(var(--u) * 3); }
+  .resume-doc { width: min(100%, calc(var(--u) * 22)); }
+  .highlights { grid-column: 1 / -1; }
+  .highlights ul { grid-template-columns: 1fr 1fr; }
+}
+
+/* ---------- phones ---------- */
+@media (max-width: 600px) {
+  .resume { --u: min(2.4vw, calc((100svh - 64px) / 70)); padding: 3vh 16px; min-height: calc(100svh - 64px); }
+  .resume-title { font-size: min(10vw, 5.5vh); }
+  .resume-grid { grid-template-columns: .75fr 1.25fr; gap: 3vh 16px; }
+  .resume-doc { width: 82%; margin-left: 8px; }
+  .resume-cta h3 { font-size: min(1.3rem, 3vh); }
+  .resume-cta p { font-size: min(.85rem, 2vh); margin: 1vh 0 1.6vh; }
+  .resume-cta .btn { font-size: min(.9rem, 2.1vh); padding: .65em 1em; margin-bottom: 1vh; }
+  .highlights { padding: 1.6vh 14px; border-radius: 14px; }
+  .highlights h3 { font-size: min(1.6rem, 3.6vh); }
+  .highlights ul { gap: 1.2vh 10px; }
+  .highlights li { font-size: min(.85rem, 2vh); gap: 8px; }
+  .highlights svg { width: 18px; height: 18px; }
+}

@@ -1,0 +1,61 @@
+/* ===== CONTACT ===== */
+/* --u shrinks with BOTH window width and height so the section fits one screen */
+.contact {
+  --u: min(1vw, calc((100vh - 72px) / 50));
+  position: relative;
+  min-height: calc(100vh - 72px);
+  display: flex; align-items: center;
+  max-width: none;
+  padding: calc(var(--u) * 2) calc(var(--u) * 8);
+}
+.contact-grid {
+  width: 100%;
+  display: grid; justify-items: center; text-align: center;
+}
+.contact-info { width: min(100%, calc(var(--u) * 62)); }
+.contact-info .script-title { font-size: calc(var(--u) * 6); }
+.contact-grid > * { min-width: 0; }
+
+/* ---------- left: heading + link pills ---------- */
+.contact-lead {
+  margin: calc(var(--u) * 1.6) auto calc(var(--u) * 3.4); max-width: 30em; text-wrap: balance;
+  font-size: max(15px, calc(var(--u) * 1.9)); line-height: 1.5;
+}
+.contact-list { list-style: none; display: grid; gap: calc(var(--u) * 1.6); }
+.contact-list a {
+  display: flex; align-items: center; gap: calc(var(--u) * 2);
+  padding: calc(var(--u) * 1.6) calc(var(--u) * 3);
+  text-align: left;
+  border: 1.5px solid rgba(200, 160, 255, .5); border-radius: 999px;
+  background: linear-gradient(160deg, rgba(139, 92, 246, .12), rgba(255, 255, 255, .03));
+  box-shadow: 0 0 18px rgba(168, 85, 247, .18);
+  font-size: max(15px, calc(var(--u) * 1.8));
+  transition: transform .25s, box-shadow .25s, border-color .25s;
+}
+.contact-list a:hover { transform: translateY(-3px); border-color: rgba(220, 190, 255, .85); box-shadow: 0 0 28px rgba(168, 85, 247, .45); }
+.contact-list span {
+  flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  padding-left: calc(var(--u) * 2); border-left: 1px solid rgba(255, 255, 255, .25);
+}
+.contact-list svg {
+  flex: none; fill: none; stroke: #f3e8ff; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round;
+}
+.contact-list .ic { width: max(22px, calc(var(--u) * 2.8)); height: max(22px, calc(var(--u) * 2.8)); }
+.contact-list .ext { width: max(16px, calc(var(--u) * 2)); height: max(16px, calc(var(--u) * 2)); opacity: .85; }
+
+/* ---------- medium windows ---------- */
+@media (max-width: 1000px) {
+  .contact { --u: min(1.4vw, calc((100vh - 72px) / 62)); padding-inline: calc(var(--u) * 4); }
+}
+
+/* ---------- phones: stack, compact ---------- */
+@media (max-width: 700px) {
+  .contact { --u: min(2.4vw, calc((100svh - 64px) / 80)); padding: 3vh 16px; min-height: calc(100svh - 64px); }
+  .contact-info .script-title { font-size: min(10vw, 5.5vh); }
+  .contact-lead { font-size: min(1.05rem, 2.4vh); margin: 1vh 0 1.8vh; }
+  .contact-list { gap: 1vh; }
+  .contact-list a { padding: 2vh 20px; font-size: min(1.05rem, 2.5vh); gap: 14px; }
+  .contact-list span { padding-left: 12px; }
+  .contact-list .ic { width: 24px; height: 24px; }
+  .contact-list .ext { width: 15px; height: 15px; }
+}

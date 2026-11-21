@@ -1,0 +1,48 @@
+/* ===== NAV BAR ===== */
+/* ---------- nav ---------- */
+.nav {
+  position: sticky; gap: 20px; top: 0; z-index: 10;
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+  padding: 16px var(--gutter);
+  background: rgba(20, 12, 34, 0.7);
+  backdrop-filter: blur(10px);
+}
+.logo {
+  font-family: "Great Vibes", cursive; font-size: 2.4rem; justify-self: start;
+  /* keep the logo clear of the corner blossom branch (it pokes ~95px in from the left) */
+  margin-left: max(0px, calc(100px - var(--gutter)));
+}
+.nav-links { display: flex; gap: 6px; list-style: none; }
+.nav-links a {
+  padding: 8px 22px; border-radius: 999px; font-size: 1.02rem; white-space: nowrap;
+  transition: background .25s, box-shadow .25s;
+}
+.nav-links a:hover { background: rgba(155, 92, 246, .18); }
+.nav-links a.active {
+  background: linear-gradient(135deg, #8b5cf6, #a855f7);
+  box-shadow: 0 0 18px rgba(168, 85, 247, .6);
+}
+.nav-toggle { display: none; background: none; border: 0; cursor: pointer; padding: 6px; }
+.nav-toggle span { display: block; width: 24px; height: 2px; margin: 5px 0; background: var(--text); }
+
+/* phones: hamburger menu */
+/* medium widths: tighter links so they all fit */
+@media (max-width: 1100px) {
+  .nav-links { gap: 2px; }
+  .nav-links a { padding: 8px 14px; font-size: .98rem; }
+}
+
+@media (max-width: 860px) {
+  .nav { display: flex; justify-content: space-between; padding: 14px 16px; }
+  .nav-toggle { display: block; }
+  .logo { margin-left: 20px; }
+  .nav nav {
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: rgba(20, 12, 34, .97);
+    max-height: 0; overflow: hidden; transition: max-height .3s;
+  }
+  .nav.open nav { max-height: 400px; }
+  .nav-links { flex-direction: column; padding: 12px 16px 20px; }
+  .nav-links a { display: block; }
+  .blossom-right { display: none; }
+}

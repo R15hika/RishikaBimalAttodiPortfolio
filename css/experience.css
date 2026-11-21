@@ -1,0 +1,172 @@
+/* ===== WORK EXPERIENCE ===== */
+/* --u shrinks with BOTH window width and height so the section fits one screen */
+.experience {
+  --u: min(.95vw, calc((100vh - 72px) / 58));
+  position: relative;
+  min-height: calc(100vh - 72px);
+  display: flex; align-items: center;
+  max-width: none;
+  padding: calc(var(--u) * 2) calc(var(--u) * 6);
+}
+.exp-grid {
+  width: 100%;
+  display: grid; grid-template-columns: 2.2fr 1fr;
+  gap: calc(var(--u) * 3); align-items: center;
+}
+.exp-grid > * { min-width: 0; }
+
+/* ---------- timeline of jobs ---------- */
+.exp-timeline {
+  list-style: none; position: relative;
+  display: grid; gap: calc(var(--u) * 1.8);
+  margin-top: calc(var(--u) * 1.8);
+  padding-left: calc(var(--u) * 4);
+}
+.exp-timeline::before { /* glowing vertical line */
+  content: ""; position: absolute; left: calc(var(--u) * .9); top: 4%; bottom: 4%;
+  width: 2px; background: linear-gradient(rgba(216, 180, 254, .9), rgba(216, 180, 254, .4));
+  box-shadow: 0 0 10px rgba(192, 132, 252, .8);
+}
+
+.job {
+  position: relative;
+  display: grid; grid-template-columns: calc(var(--u) * 13) 1fr; align-items: center;
+  padding: calc(var(--u) * 1.4) calc(var(--u) * 2) calc(var(--u) * 1.4) 0;
+  border: 1.5px solid rgba(200, 160, 255, .45); border-radius: calc(var(--u) * 2);
+  background: linear-gradient(160deg, rgba(139, 92, 246, .14), rgba(255, 255, 255, .03));
+  box-shadow: 0 0 22px rgba(168, 85, 247, .2);
+  transition: transform .25s, box-shadow .25s;
+}
+.job:hover { transform: translateX(6px); box-shadow: 0 0 34px rgba(168, 85, 247, .45); }
+.job::before { /* dot on the timeline */
+  /* centred exactly on the timeline line (line centre = -3.1u + 1px from the card) */
+  content: ""; position: absolute; top: 50%; left: calc(var(--u) * -3.1 + 1px);
+  width: max(10px, calc(var(--u) * 1.3)); aspect-ratio: 1; border-radius: 50%; transform: translate(-50%, -50%);
+  background: #f3e8ff; box-shadow: 0 0 12px #c084fc;
+}
+
+.job-logo {
+  display: grid; place-items: center; align-self: stretch;
+  padding: 0 calc(var(--u) * 1.4);
+  border-right: 1px solid rgba(255, 255, 255, .2);
+  margin-right: calc(var(--u) * 2);
+}
+.job-logo img { max-width: 100%; max-height: calc(var(--u) * 5.5); object-fit: contain; }
+.job-logo img + .logo-text { display: none; } /* text only shows if there is no logo image */
+.logo-text {
+  font-weight: 600; text-align: center; line-height: 1.1;
+  font-size: max(14px, calc(var(--u) * 2)); letter-spacing: .02em;
+}
+.lt-ocbc { color: #ff4d4d; }
+.lt-sit  { color: #ffffff; }
+.lt-cy   { color: #6ea8ff; font-size: max(13px, calc(var(--u) * 1.6)); }
+
+.job-top { display: flex; align-items: flex-start; justify-content: space-between; gap: calc(var(--u) * 1.5); }
+.job-top h3 { font-size: max(16px, calc(var(--u) * 1.9)); font-weight: 500; line-height: 1.2; }
+.job-date {
+  flex: none; white-space: nowrap;
+  font-size: max(12px, calc(var(--u) * 1.1));
+  padding: .35em 1.1em; border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, .35); background: rgba(255, 255, 255, .04);
+}
+.job-org { font-size: max(14px, calc(var(--u) * 1.45)); margin-top: calc(var(--u) * .2); }
+.job-org em { color: var(--muted); }
+.job-points { margin-top: calc(var(--u) * .7); padding-left: 1.2em; }
+.job-points li {
+  font-size: max(13.5px, calc(var(--u) * 1.3)); line-height: 1.45; color: var(--text);
+}
+.job-points li::marker { color: #e9d5ff; }
+
+/* ---------- right side: photo + key takeaways ---------- */
+.exp-side { display: grid; gap: calc(var(--u) * 1.6); justify-items: center; }
+.exp-photo {
+  width: min(92%, 46vh); /* shrinks on short screens */ background: #f3ecfa;
+  padding: calc(var(--u) * .9) calc(var(--u) * .9) calc(var(--u) * 2.4);
+  border-radius: 4px; transform: rotate(-5deg);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, .5), 0 0 34px rgba(168, 85, 247, .25);
+  transition: transform .4s;
+}
+.exp-photo:hover { transform: rotate(-2deg) scale(1.03); }
+.exp-photo img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+
+.takeaways {
+  width: 100%;
+  border: 1.5px solid rgba(200, 160, 255, .5); border-radius: calc(var(--u) * 2);
+  padding: calc(var(--u) * 1.6) calc(var(--u) * 2.2);
+  background: linear-gradient(160deg, rgba(139, 92, 246, .16), rgba(255, 255, 255, .03));
+  box-shadow: 0 0 30px rgba(168, 85, 247, .3), inset 0 0 20px rgba(168, 85, 247, .1);
+}
+.takeaways h3 {
+  font-family: var(--serif); font-style: italic; font-weight: 400;
+  font-size: calc(var(--u) * 2.8); margin-bottom: calc(var(--u) * .8);
+}
+.takeaways .heart { font-size: .5em; vertical-align: .45em; font-style: normal; }
+.takeaways ul { list-style: none; display: grid; gap: calc(var(--u) * .9); }
+.takeaways li {
+  display: flex; align-items: center; gap: calc(var(--u) * 1.2);
+  font-size: max(13.5px, calc(var(--u) * 1.4));
+}
+.takeaways svg {
+  flex: none; width: calc(var(--u) * 2.4); height: calc(var(--u) * 2.4);
+  fill: none; stroke: #e9d5ff; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+}
+
+/* medium windows: give the job cards more room so text doesn't wrap as much */
+@media (max-width: 1250px) {
+  .experience { --u: min(1.2vw, calc((100vh - 72px) / 60)); padding-inline: calc(var(--u) * 3.5); }
+  .exp-grid { grid-template-columns: 2.5fr 1fr; }
+  .job { grid-template-columns: calc(var(--u) * 11) 1fr; }
+}
+
+/* medium windows (e.g. a half-screen window): jobs full width, takeaways as a bar
+   underneath, photo hidden, so the text can be bigger and still fit */
+@media (max-width: 1100px) {
+  .experience { --u: min(1.3vw, calc((100vh - 72px) / 71)); }
+  .exp-grid { grid-template-columns: 1fr; gap: calc(var(--u) * 2.2); }
+  .exp-side { display: block; }
+  .exp-photo { display: none; }
+  .takeaways {
+    display: grid; grid-template-columns: auto 1fr; align-items: center;
+    gap: calc(var(--u) * 1) calc(var(--u) * 4);
+    padding: calc(var(--u) * 1.1) calc(var(--u) * 2.4);
+    margin-left: calc(var(--u) * 4); width: auto;
+  }
+  .takeaways h3 { margin: 0; }
+  .takeaways ul { grid-template-columns: repeat(2, 1fr); gap: calc(var(--u) * .8) calc(var(--u) * 3); }
+}
+
+/* ---------- narrow windows: jobs on top, photo + takeaways side by side below ---------- */
+@media (max-width: 900px) {
+  .takeaways { grid-template-columns: 1fr; }
+  .experience { --u: min(1.6vw, calc((100svh - 64px) / 80)); min-height: calc(100svh - 64px); padding: 3vh 16px; }
+}
+
+/* phones: compact cards (small logo beside the text, date beside the title),
+   takeaways in a 2x2 grid, photo hidden, so the whole section fits one screen */
+@media (max-width: 600px) {
+  .experience { padding: 2.5vh 14px; }
+  .exp-grid { gap: 2vh; }
+  .exp-timeline { padding-left: 22px; gap: 1.4vh; margin-top: 1.4vh; }
+  .exp-timeline::before { left: 6px; }
+  .job::before { left: -15px; width: 10px; } /* line centre at 7px, card starts at 22px */
+
+  .job { grid-template-columns: 60px 1fr; align-items: start; padding: 1.3vh 12px; border-radius: 14px; }
+  .job-logo { border-right: 0; margin: 2px 8px 0 0; padding: 0; justify-items: start; align-self: start; }
+  .job-logo img { max-height: 34px; max-width: 54px; }
+  .logo-text, .lt-cy { font-size: 13px; text-align: left; }
+
+  .job-top { flex-wrap: wrap; align-items: center; gap: 2px 8px; justify-content: flex-start; }
+  .job-top h3 { font-size: min(1.12rem, 2.7vh); }
+  .job-date { font-size: min(.75rem, 1.8vh); padding: .2em .8em; }
+  .job-org { font-size: min(.95rem, 2.2vh); margin-top: 2px; }
+  .job-points { margin-top: .6vh; padding-left: 1.1em; }
+  .job-points li { font-size: min(.88rem, 2.1vh); line-height: 1.38; }
+
+  .exp-side { grid-template-columns: 1fr; }
+  .exp-photo { display: none; }
+  .takeaways { display: block; margin-left: 0; padding: 1.4vh 14px; border-radius: 14px; }
+  .takeaways h3 { font-size: min(1.7rem, 3.8vh); margin-bottom: .8vh; }
+  .takeaways ul { grid-template-columns: 1fr 1fr; gap: 1vh 10px; }
+  .takeaways li { font-size: min(.88rem, 2vh); gap: 6px; line-height: 1.25; }
+  .takeaways svg { width: 19px; height: 19px; }
+}

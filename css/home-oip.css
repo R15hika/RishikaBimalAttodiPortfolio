@@ -1,0 +1,55 @@
+/* ===== HOME: OIP section (links to oip.html) ===== */
+/* same sizing unit (--u) as the Experience section, so headings match */
+.home-oip {
+  --u: min(.95vw, calc((100vh - 72px) / 58));
+  max-width: none;
+  padding: calc(var(--u) * 5) calc(var(--u) * 6);
+}
+.hoip-grid {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: clamp(28px, 4vw, 64px); align-items: center;
+}
+.hoip-meta { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 20px; }
+.hoip-meta li {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 16px; border-radius: 999px; font-size: .92rem;
+  border: 1.5px solid rgba(200, 160, 255, .4);
+  background: linear-gradient(170deg, rgba(139, 92, 246, .16), rgba(255, 255, 255, .03));
+}
+.hoip-meta svg, .hoip-tile svg {
+  fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round;
+}
+.hoip-meta svg { width: 20px; height: 20px; flex: none; color: var(--pink); }
+.hoip-lead { font-size: 1.05rem; line-height: 1.7; color: var(--text); margin-bottom: 26px; max-width: 34em; }
+
+.hoip-albums { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 1.4vw, 20px); }
+.hoip-tile {
+  position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+  aspect-ratio: 4 / 3; border-radius: 18px; overflow: hidden; text-align: center;
+  padding: 12px; font-size: .9rem; color: var(--text);
+  border: 1.5px solid rgba(200, 160, 255, .45);
+  background: radial-gradient(ellipse at 50% 35%, rgba(139, 92, 246, .28), rgba(20, 10, 40, .6));
+  box-shadow: 0 0 20px rgba(168, 85, 247, .18);
+  transition: transform .2s, border-color .2s, box-shadow .2s;
+}
+.hoip-tile:hover, .hoip-tile:focus-visible {
+  transform: translateY(-4px); border-color: rgba(220, 190, 255, .85); box-shadow: 0 0 30px rgba(168, 85, 247, .4);
+}
+.hoip-tile svg { width: 38px; height: 38px; color: var(--purple-2); position: relative; z-index: 1; }
+.hoip-tile span { position: relative; z-index: 1; }
+/* once an album has photos, its first photo becomes the tile's cover */
+.hoip-tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hoip-tile img ~ svg { display: none; }
+.hoip-tile img ~ span {
+  margin-top: auto; padding: 4px 12px; border-radius: 999px; background: rgba(15, 8, 30, .7);
+}
+
+@media (max-width: 900px) {
+  .home-oip { padding: 60px var(--gutter); }
+  .home-oip .script-title { font-size: min(10vw, 5.5vh); }
+  .hoip-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) {
+  .hoip-albums { grid-template-columns: repeat(2, 1fr); }
+  .hoip-tile { font-size: .82rem; }
+}
